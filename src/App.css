@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 Header{
     text-align: center;
     font-size: 3rem;
@@ -29,16 +30,30 @@ Nav li{
    font-size: 2rem;
 }
 
+
 a{
     text-decoration: none;
 }
 
 img{
     width: 220px;
+    height: 220px;
 }
 
 .wrapper{
     display: flex;
     justify-content: space-around;
     margin-top: 5.5rem;
+}
+
+.change-container{
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.change {
+    font-size: 20px;
+    padding: 1.5rem;
 }
