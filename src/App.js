@@ -17,7 +17,7 @@ const App = ()=>{
   const [nextid, setNextId] = useState(4);       // 새로 추가되는 topic은 id 4번부터 부여
   const [mode, setMode] = useState("Welcome");   
   let img = null;
-  let update, content = null;
+  let update, remove , content = null;
 
 
   // 초기 화면
@@ -32,12 +32,23 @@ const App = ()=>{
         if(id === topic.id){
           img = <img src={require(`${topic.img}`)} alt="img error"/>
           content = <Article title={topic.title} body={topic.body}/>
+
           update =  
           <li className='change'><a href="/update" onClick={event =>{
             event.preventDefault();
             setMode("Update");
           }}>Update</a></li>  // mode가 Read인 경우만 update 링크가 보임
           }
+
+
+          // delete 클릭 시 해당 topic 삭제
+          remove =  <li className='change'>
+            <button onClick={event=>{
+              event.preventDefault();
+              setTopics( topics.filter(topic=>topic.id!==id));
+              setMode("Welcome");
+              setNextId(nextid - 1);  // create 고려하여 topic 삭제 시 nextid 값이 1 줄어듬
+            }}>Delete</button></li>
         }
       )
   }
@@ -108,6 +119,7 @@ const App = ()=>{
         </li>
 
         {update}
+        {remove}
       </ul>
     </>
   )
