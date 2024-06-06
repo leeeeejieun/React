@@ -4,40 +4,25 @@
     box-sizing: border-box;
 }
 
-Header{
-    text-align: center;
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-
-article h3{
-    font-size: 1.5rem;
-}
-
-article p{
-    padding-top: 20px;
-    font-size: 1rem;
-}
-
-Nav ul{
-    display: flex;
-    justify-content: center;
-    gap: 3.5rem;
-}
-
-Nav li{
-   list-style: none;
-   font-size: 2rem;
-}
-
-
 a{
     text-decoration: none;
 }
 
-img{
-    width: 220px;
-    height: 220px;
+header{
+    text-align: center;
+    font-size: 3rem;
+   margin-bottom: 1.5rem;
+}
+
+nav ul{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+nav li{
+   list-style: none;
+   font-size: 1.5rem;
 }
 
 .wrapper{
@@ -46,14 +31,45 @@ img{
     margin-top: 5.5rem;
 }
 
-.change-container{
-    margin-top: 1.5rem;
+.wrapper article h3{
+    font-size: 2rem;
+}
+
+
+.wrapper article p{
+    padding-top: 20px;
+    font-size: 1.3rem;
+}
+
+.wrapper img{
+    width: 250px;
+    height: 220px;
+}
+
+footer{
+    margin-top: 5.5rem;
     display: flex;
     justify-content: center;
-    list-style: none;
+    gap: 20px;
+}
+
+footer button{
+    font-size: 20px;
 }
 
 .change {
+    padding: 3.5rem;
+    text-align: center;
     font-size: 20px;
-    padding: 1.5rem;
+}
+
+.change p{
+    padding: 10px;
+}
+
+.change input,
+.change textarea,
+button {
+    width: 200px;
+    height: 30px;
 }
