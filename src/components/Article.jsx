@@ -1,10 +1,20 @@
 import React from "react";
+import styled from "styled-components";
+
+const Title = styled.h3`
+    font-size: 2rem;
+`;
+
+const Body =  styled.p`
+    padding-top: 20px;
+    font-size: 1.3rem;
+`;
 
 const Article = ({title,body})=>{
     return(
         <article>
-            <h3>{title}</h3>
-            <p>{body}</p>
+            <Title>{title}</Title>
+            <Body>{body}</Body>
         </article>
     );
 }

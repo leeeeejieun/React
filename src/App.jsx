@@ -49,15 +49,17 @@ const App = () => {
         }
         setTopics([...topics,newTopic]);   
         navigate(`/${newTopic.link}`);     // create 완료시 생성된 topic 링크로 이동
+        setNowTopic(newTopic);
     }
 
     // topic 내용 변경 기능
-    const onUpdate = (udtopic) =>{
+    const onUpdate = (updateTopic) =>{
        const newTopics = topics.map(topic =>(
-        topic.link === udtopic.link ? udtopic : topic
+        topic.link === updateTopic.link ? updateTopic : topic
        ));
        setTopics(newTopics);
-       navigate(`/${udtopic.link}`);
+       navigate(`/${updateTopic.link}`);
+       setNowTopic(updateTopic);
     }
 
     // topic 삭제 기능
@@ -65,7 +67,6 @@ const App = () => {
         setTopics(topics.filter(topic=> topic.link !== nowTopic.link));
         navigate('/');  // 삭제 완료 후 메인 페이지로 이동
     }
-
 
     return (
         <>
