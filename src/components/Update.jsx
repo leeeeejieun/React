@@ -2,8 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { ChangeInner, ChangeWrapper } from './Change';
 
-const Update = ({nowTopic,onUpdate}) => {
-    const[updateTopic,setUpdateTopic] = useState(nowTopic);
+const Update = ({currentTopic, onUpdate}) => {
+    const[updateTopic,setUpdateTopic] = useState(currentTopic);
     const {title, body} = updateTopic;
 
     const onChange = (e) =>{

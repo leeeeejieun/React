@@ -20,10 +20,10 @@ const Button = styled.button`
     font-size : 20px;
 `
 
-const Footer = ({onDelete}) =>{
+const Footer = ({onDelete, currentTopic}) =>{
     const location = useLocation();
-    console.log(location.pathname);
-    return(
+    
+    return( 
         <FooterWrapper className="flex-center" $path={location.pathname}>
              <Link to='/create'><Button>Create</Button></Link>
              {/* true인 경우만 Update & Delete 추가 */}

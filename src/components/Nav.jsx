@@ -11,10 +11,10 @@ const ListWrapper =  styled.ul`
     gap: 30px;
 `;
 
-const Nav = ({topics, setTopic}) =>{
+const Nav = ({topics}) =>{
     const linkList = topics.map(topic =>(
         <List key={topic.link}>
-        <Link to={`/${topic.link}`} onClick={()=>{setTopic(topic)}} >{topic.link}</Link>
+             <Link to={topic.link}>{topic.title}</Link>
         </List>
     ));    
 
