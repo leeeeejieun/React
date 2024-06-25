@@ -6,6 +6,7 @@
 
 a{
     text-decoration: none;
+    color: black;
 }
 
 .flex-center{
@@ -16,6 +17,13 @@ a{
 .flex-around{
     display: flex;
     justify-content: space-around;
+    align-items: center;
+}
+
+.flex-between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .flex-colum{

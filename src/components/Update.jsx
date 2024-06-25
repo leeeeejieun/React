@@ -1,10 +1,11 @@
-import React from 'react';
-import { useState } from 'react';
-import { ChangeInner, ChangeWrapper } from './Change';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ChangeInner, ChangeWrapper, TextArea, Button, Title} from './Change';
 
-const Update = ({currentTopic, onUpdate}) => {
+const Update = ({currentTopic, topics, setTopics}) => {
     const[updateTopic,setUpdateTopic] = useState(currentTopic);
     const {title, body} = updateTopic;
+    const navigate = useNavigate();
 
     const onChange = (e) =>{
         const id = e.target.id;
@@ -19,16 +20,25 @@ const Update = ({currentTopic, onUpdate}) => {
          */
     }
 
+    // topic 내용 변경 기능
+    const onUpdate = (updateTopic) =>{
+        const newTopics = topics.map(topic =>(
+        topic.link === updateTopic.link ? updateTopic : topic
+        ));
+        setTopics(newTopics);
+        navigate(updateTopic.link);
+    }
+
     return(
         <ChangeWrapper>
-            <h3>Update</h3><br />
+            <Title>Update</Title>
             <ChangeInner  className="flex-colum" onSubmit={event=>{
                 event.preventDefault();
                 onUpdate(updateTopic);
             }}>
                 <input type="text" id = "title" value={title} onChange={onChange}/>
-                <textarea id = "body" value={body} onChange={onChange}></textarea>
-                <button>Update</button>
+                <TextArea id = "body" value={body} onChange={onChange}></TextArea>
+                <Button>Update</Button>
             </ChangeInner>
         </ChangeWrapper>
         

@@ -10,25 +10,24 @@ import styled from "styled-components";
 */
 
 const FooterWrapper = styled.footer`
-    margin-top : ${props => 
-        (props.$path === "/create" || props.$path === "/update") ? "1.5rem" : "5rem"
-    }; 
-    gap : 30px 
+    margin-top : ${props =>
+        (props.$path === "/create" || props.$path === "/update") ? "0.3rem" : "8rem"}; 
+    gap : 30px;
 `;
 
 const Button = styled.button`
     font-size : 20px;
-`
+`;
 
-const Footer = ({onDelete, currentTopic}) =>{
+const Footer = ({onDelete}) =>{
     const location = useLocation();
     
     return( 
         <FooterWrapper className="flex-center" $path={location.pathname}>
-             <Link to='/create'><Button>Create</Button></Link>
              {/* true인 경우만 Update & Delete 추가 */}
              {location.pathname !== "/" &&   
                 <> 
+                <Link to='/create'><Button>Create</Button></Link>
                 <Link to='/update'><Button>Update</Button></Link>
                 <Button onClick={onDelete}>Delete</Button>  
                 </>
