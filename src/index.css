@@ -6,12 +6,22 @@
 
 a{
     text-decoration: none;
-    color: black;
+    color: inherit;  /* 부모 요소에게 상속 받은 값을 사용*/
+}
+
+ul,
+li{
+    list-style: none;
+}
+
+button{
+    border: none;
 }
 
 .flex-center{
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .flex-around{
@@ -30,9 +40,4 @@ a{
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-input, textarea, button {
-    width: 300px;
-    height: 40px;
 }

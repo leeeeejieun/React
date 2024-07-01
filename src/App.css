@@ -9,8 +9,7 @@ button {
     height: 30px;
 }
 
-.header{
-    padding: 10px;
-    border-bottom: 1px solid black;
-    background: linear-gradient(to right,#D5D5D5,#F6F6F6);
+input, textarea, button {
+    width: 300px;
+    height: 40px;
 }

@@ -7,9 +7,19 @@ import Update from '../components/Update';
 import Header from '../components/Header';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+    background-color: ${props => props.theme.mainColor};
+    color: ${props => props.theme.textColor};
+    border-bottom: 1px solid black;
+    padding: 10px;
+    transition: .5s;
+`;
+
 
 const Page = () => {
-    
+
     const initTopic = () =>{
         return([ 
             {link: "/html", title: "HTML", body: "html is ...", img: "img/html.png"},
@@ -19,6 +29,7 @@ const Page = () => {
     };
     
     const [topics, setTopics] = useState(initTopic);  // 초기값을 콜백 함수로 주면 처음 렌더링 될 때만 useState 호출
+
     const currentTopic = useRef(null);                    // 현재 페이지에 대한 topic 저장
     const navigate = useNavigate();                   // 특정 이벤트가 발생할 때 주소를 이동시키는 기능 제공
     const location = useLocation();                   // 현재 페이지의 위치를 반환
@@ -55,10 +66,10 @@ const Page = () => {
 
     return (
         <>
-        <div className='flex-between header'>
-            <Header />
-            <Nav topics={topics}/>
-        </div>
+            <Wrapper className='flex-between'>
+                <Header />
+                <Nav topics={topics}/>
+            </Wrapper>
 
             <Routes>
                 <Route path='/' element={<Content title="Welcome" body="web is ..." img="img/web.png"/>}></Route>
