@@ -3,13 +3,13 @@ import { lightTheme, darkTheme } from '../theme/Theme';
 import { createContext, useState, useContext, useCallback } from 'react';
 import { ThemeProvider as StyledProvider} from 'styled-components'; 
 
-const ThemeContext = createContext({}); 
+/*
+    Provider 컴포넌트를 제공하게 될 context 객체를 생성
+    테마 관련 정보를 하위 컴포넌트들에게 전달
+*/
+const ThemeContext = createContext(); 
 
 const ThemeProvider = ({children}) => {
-     /*
-      Provider 컴포넌트 제공하게 될 context 객체 생성
-      테마 관련 정보를 하위 컴포넌트들에게 전달
-    */
 
     // 테마 모드 상태 & 테마 변경 함수
     const [ThemeMode, setThemeMode] = useState('light');
@@ -41,7 +41,7 @@ function useTheme() {
         else{
             setThemeMode("light");
         };
-    }, [ThemeMode]);
+    }, [ThemeMode, setThemeMode]);
 
     return [ThemeMode, toggleTheme];
 }

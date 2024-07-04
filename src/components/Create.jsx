@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChangeInner, ChangeWrapper, TextArea, Button, Title} from './Change';
+import { ChangeInner, ChangeWrapper, TextArea, Button, Title} from '../styles/Change';
 
 const Create = ({topics, setTopics}) => {
     const linkNumber = useRef(1);                     // create로 생긴 페이지 링크 구별

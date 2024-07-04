@@ -27,11 +27,17 @@ const Nav = ({topics}) => {
 
 export default Nav;
 
+/*
+    & a : 모든 자손 a 태그를 선택
+    & > a : 직계 자식 a 태그만 선택
+*/
+
 const List = styled.li`
      font-size: 1.3rem;
-     & a {
+     & > a {
         display:  inline-block;
         transition: .1s;
+        
         &:hover{
             transform: scale(1.1);
          }

@@ -9,15 +9,6 @@ import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
-    background-color: ${props => props.theme.mainColor};
-    color: ${props => props.theme.textColor};
-    border-bottom: 1px solid black;
-    padding: 10px;
-    transition: .5s;
-`;
-
-
 const Page = () => {
 
     const initTopic = () =>{
@@ -84,3 +75,11 @@ const Page = () => {
 }
 
 export default Page;
+
+const Wrapper = styled.div`
+    background-color: ${props => props.theme.mainColor};
+    color: ${props => props.theme.textColor};
+    border-bottom: 1px solid black;
+    padding: 10px;
+    transition: .5s;
+`;

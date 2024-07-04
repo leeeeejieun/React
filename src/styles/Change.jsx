@@ -18,6 +18,8 @@ export const Button = styled.button`
     width: 300px;
     border: 1px solid gray;
     border-radius: 30px;
+    background-color: ${props => props.theme.bgColor};
+    color: ${props => props.theme.textColor};
 `;
 
 export const Title = styled.h3`
