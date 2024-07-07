@@ -10,27 +10,32 @@ import Footer from '../components/Footer';
 import styled from 'styled-components';
 
 /* 
-    useMemo는 재렌더링 사이에 계산 결과를 캐싱할 수 있게 해주는 React Hook이다.
-    동일한 값을 리턴하는 함수를 반복적으로 호출할 때,
-    첫 번째로 계산한 값을 메모리에 저장하여 이후 계산을 재수행하지 않고, 메모리에 저장된 값을 사용하도록 한다.
-    즉, 값이 변경되지 않는 한 메모이제이션된 값을 재사용함으로써 성능을 최적화하는 데 도움을 준다.
-
-    기본 구조는 다음과 같다.
-    const cachedValue = useMemo(콜백함수, 의존성 배열)
-
-    콜백 함수 : 캐싱하려는 값을 계산 후 '반환'하는 함수
-    의존성 배열 : 해당 배열 내의 값들이 변경될 때만 콜백 함수를 다시 실행하여 cachedValue 업데이트
-                따라서 배열 내의 값들이 변경되지 않으면 이전에 계산된 값을 재사용한다.
-
-    * 예시
-        const memoizedValue = useMemo(() => {
-            // 복잡한 계산 수행
-            return computeExpensiveValue(a, b);
-        }, [a, b]);
+    window.localStorage
     
-    첫 렌더링 시 computeExpensiveValue(a, b)가 호출되어 결과가 memoizedValue에 저장된다.
-    이후 렌더링에서 'a' 또는 'b'가 변경되지 않으면 이전에 저장된 memoizedValue을 반환하며,
-    변경된 경우 computeExpensiveValue(a, b)가 다시 호출되고 새로운 결과가 memoizedValue에 저장되어 반환된다.
+    localStorage 속성은 현재 도메인의 로컬 저장소에 접근할 수 있게 해준다.
+
+    로컬 저장소는 웹브라우저에서 각 도메인에 대해 할당해주는 저장 공간으로, 
+    데이터를 영구적으로 보관할 수 있게 해준다.
+    (브라우저를 껐다 켜기 or 페이지 새로고침 시에도 해당 페이지에 데이터가 남도록 한다.)
+
+    데이터는 key-value 쌍으로 저장되며, 데이터 타입은 '문자열' 형태만 허용된다.
+    ! key 중복 불가 
+
+    * 로컬 저장소로부터 데이터를 읽거나 쓸 때에는 '메소드'를 이용해 접근한다.
+    1. setItem : key & value 전달받아 저장  => setItem("key", "value")
+    2. getItem : 전달받은 key에 해당하는 value 반환  = > getItem("key")
+    3. removeItem : 전달받은 key에 해당하는 value 삭제 => removeItem("key") 
+    4. clear : 모든 데이터 삭제 => clear()   
+
+    <JSON 데이터 & JS 객체 간의 변환 방법>
+    1) JSON.stringify(object name)
+    - 객체(Object, Array)를 JSON 문자열로 변환
+    => localStorage.setItem("topics", JSON.stringify(topics));
+
+    2) JSON.parse(localStorage key)
+    - JSON 문자열을 js 객체로 변환
+    => const localTopics = JSON.parse(localStorage.getItem("topics"));
+
 */
 const Page = () => {
 
@@ -112,5 +117,4 @@ const Wrapper = styled.div`
     color: ${props => props.theme.textColor};
     border-bottom: 1px solid black;
     padding: 10px;
-    transition: .5s;
 `;

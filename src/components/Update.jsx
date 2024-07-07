@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ChangeInner, ChangeWrapper, TextArea, Button, Title} from '../styles/Change';
 
 const Update = ({currentTopic, topics, setTopics}) => {
-    const[updateTopic,setUpdateTopic] = useState(currentTopic);
+    const[updateTopic, setUpdateTopic] = useState(currentTopic);
     const {title, body} = updateTopic;
     const navigate = useNavigate();
 
