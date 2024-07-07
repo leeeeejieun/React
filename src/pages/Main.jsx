@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo} from 'react';
+import React, { useState, useRef, useEffect, useMemo, useCallback} from 'react';
 import { Routes,Route} from "react-router-dom";
 import {useNavigate, useLocation} from "react-router-dom"
 import Content from '../components/Content';
@@ -8,33 +8,17 @@ import Header from '../components/Header';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import styled from 'styled-components';
-
+ 
 /* 
-    window.localStorage
-    
-    localStorage 속성은 현재 도메인의 로컬 저장소에 접근할 수 있게 해준다.
+    useCallback은 리렌더링 간에 함수 정의를 캐싱해 주는 React Hook이다.
 
-    로컬 저장소는 웹브라우저에서 각 도메인에 대해 할당해주는 저장 공간으로, 
-    데이터를 영구적으로 보관할 수 있게 해준다.
-    (브라우저를 껐다 켜기 or 페이지 새로고침 시에도 해당 페이지에 데이터가 남도록 한다.)
+    컴포넌트가 처음 렌더링 될 때 함수 객체를 생성하고 캐싱한다.
+    이후 리렌더링이 발생할 때, 의존성 배열에 변화가 없다면 새로운 함수를 생성하지 않고
+    이전에 캐싱된 함수 객체를 재사용한다.
+    이를 통해 불필요한 함수 재생성을 방지하고 성능을 최적화 할 수 있다.
 
-    데이터는 key-value 쌍으로 저장되며, 데이터 타입은 '문자열' 형태만 허용된다.
-    ! key 중복 불가 
-
-    * 로컬 저장소로부터 데이터를 읽거나 쓸 때에는 '메소드'를 이용해 접근한다.
-    1. setItem : key & value 전달받아 저장  => setItem("key", "value")
-    2. getItem : 전달받은 key에 해당하는 value 반환  = > getItem("key")
-    3. removeItem : 전달받은 key에 해당하는 value 삭제 => removeItem("key") 
-    4. clear : 모든 데이터 삭제 => clear()   
-
-    <JSON 데이터 & JS 객체 간의 변환 방법>
-    1) JSON.stringify(object name)
-    - 객체(Object, Array)를 JSON 문자열로 변환
-    => localStorage.setItem("topics", JSON.stringify(topics));
-
-    2) JSON.parse(localStorage key)
-    - JSON 문자열을 js 객체로 변환
-    => const localTopics = JSON.parse(localStorage.getItem("topics"));
+    기본 구조는 다음과 같다.
+    const cachedFn = useCallback(함수, 의존성배열)
 
 */
 const Page = () => {
@@ -85,11 +69,30 @@ const Page = () => {
     },[topics]);
 
 
-    // topic 삭제 기능
-    const onDelete = () =>{
-        setTopics(topics.filter(topic=> topic.link !== currentTopic.current.link));
-        navigate('/');  // 삭제 완료 후 메인 페이지로 이동
-    }
+    /* 
+        topic 삭제 기능
+
+        Page 컴포넌트가 재렌더링 되면 Page 내 모든 내부 변수가 초기화된다.
+        onDelete도 렌더링 시 콜백 함수를 재할당 받는다.
+        따라서 useCallback을 통해 콜백 함수를 메모이제이션 하도록 한다.
+
+        useEffect(() => {
+            console.log('onDelete 함수가 재할당되었습니다.');
+        }, [onDelete]); 
+        => 확인 시 렌더링마다 함수 재할당이 이루어지고 있다.
+
+        * onDelete 함수는 topics 배열의 내부 값들이 변화할 때만 함수가 새롭게 생성되고 재할당된다.
+    */
+
+    const onDelete = useCallback(() => {
+            setTopics(topics.filter(topic=> topic.link !== currentTopic.current.link));
+            navigate('/');  // 삭제 완료 후 메인 페이지로 이동
+    },[topics]);
+    
+
+    useEffect(() => {
+        console.log('onDelete 함수가 재할당되었습니다.');
+      }, [onDelete]);
 
     return (
         <>
@@ -105,7 +108,7 @@ const Page = () => {
                 <Route path='/update' element={<Update currentTopic={currentTopic.current} topics={topics} setTopics={setTopics}/>}/>
             </Routes>
 
-            <Footer currentTopic={currentTopic.current}onDelete={onDelete}/>
+            <Footer currentTopic={currentTopic.current} onDelete={onDelete} />
         </>
     );
 }
