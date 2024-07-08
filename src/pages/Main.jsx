@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect, useMemo, useCallback} from 'react';
 import { Routes,Route} from "react-router-dom";
 import {useNavigate, useLocation} from "react-router-dom"
 import Content from '../components/Content';
-import Create from './Create';
-import Update from './Update';
+import Create from '../components/Create';
+import Update from '../components/Update';
 import Header from '../components/Header';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
