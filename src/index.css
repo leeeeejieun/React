@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Noto Sans", sans-serif;
 }
 
 a{
@@ -41,4 +42,9 @@ button{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
 }

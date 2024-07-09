@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChangeInner, ChangeWrapper, TextArea, Button, Title} from '../styles/Change';
+import { ChangeInner, ChangeWrapper, TextArea, Button, Title, Input} from '../styles/Change';
 
 const Create = ({topics, setTopics}) => {
     const linkNumber = useRef(1);                     // create로 생긴 페이지 링크 구별
@@ -28,7 +28,7 @@ const Create = ({topics, setTopics}) => {
                 const body = event.target.body.value;
                 onCreate(title, body);
             }}>
-                <input type="text" name="title" placeholder="title"/>
+                <Input type="text" name="title" placeholder="title"/>
                 <TextArea name="body" placeholder="body"></TextArea>
                 <Button>Create</Button>
             </ChangeInner>
@@ -36,4 +36,4 @@ const Create = ({topics, setTopics}) => {
     )
 }
 
-export default Create;
+export default Create

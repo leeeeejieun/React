@@ -21,24 +21,41 @@ import ReactDOM from "react-dom"
     2. container : child가 마운트될 DOM 요소 (일반적으로 HTML 문서 내에서 특정한 위치에 정의된 DOM 요소)
 */
 
-const Modal = ({show, onClose}) => {
-    if(!show){
+const Modal = ({modal, closeModal, onDelete}) => {
+  
+    if(!modal){
         return null;
     }
 
+    // 삭제 버튼 클릭 시 해당 페이지의 topic 제거 후 모달창이 닫아짐
+    const deleteHandle = () => {
+        onDelete();
+        closeModal();
+    }
+
     return ReactDOM.createPortal(
-        <ModalWrapper>
+        <ModalWrapper className="flex-center">
             <ModalContent>
-                <h2>Modal Title</h2>
-                <p>This is a simple modal.</p>
-                <button onClick={onClose}>Close</button>
+                <Title>해당 게시글을 삭제하시겠습니까?</Title>
+                <Content>사진과 글이 모두 삭제됩니다.</Content>
+                <ButtonWrapper className="flex-end">
+                    <Button 
+                        style={{color: "rgb(182,119,255)"}}
+                        onClick={closeModal}
+                    >취소</Button>
+                    <Button 
+                        style={{color: "rgb(255, 0, 30)"}}
+                        onClick={deleteHandle}
+                    >삭제</Button>
+                </ButtonWrapper>
             </ModalContent>
-        </ModalWrapper>,
-        document.getElementById('modal-root') // modal-root ID가 있는 DOM 요소를 찾아서 모달을 렌더링한다.
-    );
+        </ModalWrapper>
+        ,document.getElementById('modal-root')
+    )
 };
 
 export default Modal;
+
 
 const ModalWrapper = styled.div`
     position: fixed;
@@ -46,16 +63,35 @@ const ModalWrapper = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+    background-color: rgb(0,0,0,0.3);
 `;
 
 const ModalContent = styled.div`
-    background-color: white;
+    width: 350px;
+    height: 170px;
     padding: 20px;
-    border-radius: 5px;
-    text-align: center;
+    background-color: white;
+    box-shadow: 5px 5px 15px rgb(0,0,0,0.4);
 `;
+
+const Title = styled.h3`
+    color: black;
+    font-weight: 600;
+    font-size: 18px;
+    padding-bottom: 25px;
+`;
+
+const Content = styled.p`
+    color: rgba(151, 148, 148, 0.894);
+    font-size: 15px;
+`;
+
+const ButtonWrapper = styled.div`
+    position: relative;
+    bottom: -40%;
+`;
+const Button = styled.button`
+    width: 100px;
+    background-color: white;
+    font-size: 15px;
+`

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChangeInner, ChangeWrapper, TextArea, Button, Title} from '../styles/Change';
+import { ChangeInner, ChangeWrapper, TextArea, Button, Title, Input} from '../styles/Change';
 
 const Update = ({currentTopic, topics, setTopics}) => {
     const[updateTopic, setUpdateTopic] = useState(currentTopic);
@@ -36,7 +36,7 @@ const Update = ({currentTopic, topics, setTopics}) => {
                 event.preventDefault();
                 onUpdate(updateTopic);
             }}>
-                <input type="text" id = "title" value={title} onChange={onChange}/>
+                <Input type="text" id = "title" value={title} onChange={onChange}/>
                 <TextArea id = "body" value={body} onChange={onChange}></TextArea>
                 <Button>Update</Button>
             </ChangeInner>

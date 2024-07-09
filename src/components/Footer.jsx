@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
-const Footer = ({onDelete}) =>{
+const Footer = ({openModal}) =>{
     const location = useLocation();
     
     return( 
@@ -13,7 +13,7 @@ const Footer = ({onDelete}) =>{
                 <> 
                 <Link to='/create'><Button>Create</Button></Link>
                 <Link to='/update'><Button>Update</Button></Link>
-                <Button onClick={onDelete}>Delete</Button>  
+                <Button onClick={openModal}>Delete</Button>  
                 </>
              }
         </FooterWrapper>
@@ -32,10 +32,12 @@ export default Footer;
 const FooterWrapper = styled.footer`
     margin-top : ${props =>
         (props.$path === "/create" || props.$path === "/update") ? "0px" : "8rem"}; 
-    gap : 30px;
+    gap : 40px;
 `;
 
 const Button = styled.button`
+    width: 300px;
+    height: 40px;
     font-size : 20px;
     box-shadow: ${
     props => props.mode === 'dark' ? '0px 5px 10px rgba(40, 40, 40, 1), 0px 2px 4px rgba(40, 40, 40, 1)'
