@@ -30,8 +30,9 @@ export default Footer;
 */
 
 const FooterWrapper = styled.footer`
-    margin-top : ${props =>
-        (props.$path === "/create" || props.$path === "/update") ? "0px" : "8rem"}; 
+    position: fixed;
+    width: 100%;
+    bottom: 1.5rem;
     gap : 40px;
 `;
 
