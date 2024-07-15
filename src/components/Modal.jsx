@@ -22,9 +22,15 @@ import ReactDOM from "react-dom"
 */
 
 const Modal = ({modal, closeModal, onDelete}) => {
-  
+    
+    // 모달창 외부 화면 스크롤 방지 구현
     if(!modal){
+        document.body.style.overflow = 'auto';       // 모달창을 띄우지 않았을 땐 스크롤 정상 작동
         return null;
+    }
+    
+    else {
+        document.body.style.overflow = 'hidden';    // 모달창을 띄울 시 스크롤 불가능(화면 고정)
     }
 
     // 삭제 버튼 클릭 시 해당 페이지의 topic 제거 후 모달창이 닫아짐

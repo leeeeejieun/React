@@ -28,7 +28,7 @@ const Page = () => {
 
     const openModal = () => setModal(true);
     const closeModal = () => setModal(false);
-    
+
     // 렌더링될 때마다 currentTopic.current 값 변경이 이루어짐
     useEffect(() => {
         const newTopic = topics.find(topic => 
@@ -79,6 +79,7 @@ const Page = () => {
             </Routes>
 
             <Footer openModal={openModal}/>
+            <p style={{marginBottom: "30rem"}}></p>   {/* 스크롤 방지 테스트 여백 설정*/}
             <Modal modal={modal} closeModal={closeModal} onDelete={onDelete}/>
         </>
     );
