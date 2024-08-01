@@ -21,7 +21,7 @@ import ReactDOM from "react-dom"
     2. container : child가 마운트될 DOM 요소 (일반적으로 HTML 문서 내에서 특정한 위치에 정의된 DOM 요소)
 */
 
-const Modal = ({modal, closeModal, onDelete}) => {
+const Modal = ({modal, closeModal, deleteTopic, currentTopic}) => {
     
     // 모달창 외부 화면 스크롤 방지 구현
     if(!modal){
@@ -35,7 +35,7 @@ const Modal = ({modal, closeModal, onDelete}) => {
 
     // 삭제 버튼 클릭 시 해당 페이지의 topic 제거 후 모달창이 닫아짐
     const deleteHandle = () => {
-        onDelete();
+        deleteTopic(currentTopic);
         closeModal();
     }
 

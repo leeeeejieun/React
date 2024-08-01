@@ -1,5 +1,5 @@
 import React from 'react';
-import Main from './pages/Main';
+import MainPage from './pages/MainPage';
 import { GlobalStyle } from './theme/Global';
 import { ThemeProvider } from './context/ThemeProvider';
 
@@ -9,7 +9,7 @@ const App = () =>{
         <>   
             <ThemeProvider>
                 <GlobalStyle />
-                <Main  />
+                <MainPage  />
             </ThemeProvider>
         </>
     );

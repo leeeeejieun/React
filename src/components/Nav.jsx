@@ -6,7 +6,7 @@ import ThemeToggle from "../theme/ThemeToggle";
 
 const Nav = ({topics}) => {
     const [ThemeMode, toggleTheme] = useTheme();
-
+    
     const linkList = topics.map(topic =>(
         <List key={topic.link}>
              <Link to={topic.link}>{topic.title}</Link>

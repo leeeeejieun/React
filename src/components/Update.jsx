@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { ChangeInner, ChangeWrapper, TextArea, Button, Title, Input} from '../styles/Change';
 
-const Update = ({ topics, setTopics}) => {
-    const [updateTopic, setUpdateTopic] = useState(JSON.parse(localStorage.getItem("currentTopic")));
-    const {title, body} = updateTopic;
-    const navigate = useNavigate();
-
+const Update = ({updateTopic, currentTopic}) => {
+    const [udTopic, setUdTopic] = useState(currentTopic);;
+    const {title, body} = udTopic;
+   
     const onChange = (e) =>{
         const id = e.target.id;
         const value = e.target.value;
-        setUpdateTopic({
-            ...updateTopic,
+        setUdTopic({
+            ...udTopic,
             [id] : value
         });
         /*
@@ -21,12 +19,8 @@ const Update = ({ topics, setTopics}) => {
     }
 
     // topic 내용 변경 기능
-    const onUpdate = (updateTopic) =>{
-        const newTopics = topics.map(topic =>(
-        topic.link === updateTopic.link ? updateTopic : topic
-        ));
-        setTopics(newTopics);
-        navigate(updateTopic.link);
+    const onUpdate = () => {
+       updateTopic(udTopic);
     }
 
     return(
@@ -34,7 +28,7 @@ const Update = ({ topics, setTopics}) => {
             <Title>Update</Title>
             <ChangeInner  className="flex-colum" onSubmit={event=>{
                 event.preventDefault();
-                onUpdate(updateTopic);
+                onUpdate();
             }}>
                 <Input type="text" id = "title" value={title} onChange={onChange}/>
                 <TextArea id = "body" value={body} onChange={onChange}></TextArea>
