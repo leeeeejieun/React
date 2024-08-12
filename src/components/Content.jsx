@@ -5,7 +5,7 @@ const Topic = ({title,body,img}) =>{
     return(
         <TopicWrapper className="flex-around">
             <ImageWrapper>
-                <img src={`${process.env.PUBLIC_URL}${img}`} alt="img error"/>
+                <img src={`${process.env.PUBLIC_URL}${img}`} alt="이미지 오류"/>
             </ImageWrapper>
             <Article className="flex-colum">
                 <h3>{title}</h3>
@@ -33,7 +33,7 @@ const Article = styled.article`
 
 const TopicWrapper = styled.div`
     margin-top: 3.5rem;
-    padding: 0 3.5rem;
+    padding: 0 5rem;
 `;
 
 const ImageWrapper = styled.div`
