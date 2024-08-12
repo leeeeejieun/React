@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const ChangeWrapper =  styled.article`
     padding: 3rem;
     text-align: center;
+    margin-top: 2rem;
 `;
 
 export const ChangeInner = styled.form`
@@ -11,7 +12,7 @@ export const ChangeInner = styled.form`
 
 export const TextArea = styled.textarea`
      width: 300px;
-     height: 200px;
+     height: 250px;
      resize: horizontal;   // 가로 크기만 조절 가능, 세로 크기는 고정
 `;
 

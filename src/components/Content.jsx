@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 const Topic = ({title,body,img}) =>{
     return(
-        <TopicWrapper className="flex-between">
+        <TopicWrapper className="flex-around">
             <ImageWrapper>
-                <Image src={`${process.env.PUBLIC_URL}${img}`} alt="img error"/>
+                <img src={`${process.env.PUBLIC_URL}${img}`} alt="img error"/>
             </ImageWrapper>
             <Article className="flex-colum">
                 <h3>{title}</h3>
@@ -20,8 +20,8 @@ export default Topic;
 
 const Article = styled.article`
     flex: 1;
+    transform: translateY(10%);
     gap: 2.5rem;
-    height: 100%;
     & h3{
         font-size: 2rem;
         font-weight: 600;
@@ -32,17 +32,12 @@ const Article = styled.article`
 `;
 
 const TopicWrapper = styled.div`
-    width: 80%;
-    height: 250px;
-    margin: 5rem auto;
+    margin-top: 3.5rem;
+    padding: 0 3.5rem;
 `;
 
 const ImageWrapper = styled.div`
     flex: 1;
-    max-width: 350px;
-`;
-
-const Image = styled.img`
-   width: 100%;
-   height: auto;
+    max-width: 450px;
+    height: 350px;
 `;

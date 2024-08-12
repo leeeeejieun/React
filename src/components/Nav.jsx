@@ -46,6 +46,7 @@ const List = styled.li`
 
 const ListWrapper =  styled.ul`
     gap: 3.5rem;
+    align-items: center;
 `;
 
 const Navigation = styled.nav`
