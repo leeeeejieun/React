@@ -16,7 +16,7 @@ export function MainPageLogic(){
             if(newTopic){
                 localStorage.setItem("currentTopic", JSON.stringify(newTopic));
             }
-    },[topics]);
+    },[topics, location.pathname]);
 
     const routeList = useMemo(() => {
         return topics.map(topic => {

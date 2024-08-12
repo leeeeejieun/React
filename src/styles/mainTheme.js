@@ -9,4 +9,3 @@ export const darkTheme = {
     textColor : "#FAFAFA",
     mainColor : "#1B1D25"
 };
-

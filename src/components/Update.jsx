@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChangeInner, ChangeWrapper, TextArea, Button, Title, Input} from '../styles/Change';
+import { ChangeInner, ChangeWrapper, TextArea, Button, Title, Input} from '../styles/change';
 
 const Update = ({updateTopic, currentTopic}) => {
     const [udTopic, setUdTopic] = useState(currentTopic);;

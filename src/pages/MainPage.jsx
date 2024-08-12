@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes,Route} from "react-router-dom";
+import { Routes,Route, useLocation} from "react-router-dom";
 import Content from '../components/Content';
 import Create from '../components/Create';
 import Update from '../components/Update';
@@ -23,7 +23,7 @@ const MainPage = () => {
     const [modal, setModal] = useState(false);        // 모달 상태 관리를 위한 값
     const openModal = () => setModal(true);
     const closeModal = () => setModal(false);
-
+    const location = useLocation();
     
     return (
         <>
@@ -39,8 +39,8 @@ const MainPage = () => {
                 <Route path='/update' element={<Update updateTopic={updateTopic} currentTopic={currentTopic}/>}/>
             </Routes>
 
-            <Footer openModal={openModal}/>
-            <p style={{marginBottom: "30rem"}}></p>   {/* 스크롤 방지 테스트 여백 설정*/}
+            {(location.pathname !== '/create' && location.pathname !== '/update' ) && <Footer openModal={openModal}/>}
+            {/* <p style={{marginBottom: "30rem"}}></p>   스크롤 방지 테스트 여백 설정 */}
             <Modal modal={modal} closeModal={closeModal} deleteTopic={deleteTopic} currentTopic={currentTopic}/>
         </>
     );
