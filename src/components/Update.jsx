@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { ChangeInner, ChangeWrapper, TextArea, Button, Title, Input} from '../styles/change';
+import { UploadImage } from './UploadImage';
 
 const Update = ({updateTopic, currentTopic}) => {
     const [udTopic, setUdTopic] = useState(currentTopic);;
-    const {title, body} = udTopic;
-   
+    const {title, body, img} = udTopic;   // 구조 분해 할당 변수명은 해당 객체의 키와 동일해야한다.
+
     const onChange = (e) =>{
         const id = e.target.id;
         const value = e.target.value;
@@ -23,9 +24,17 @@ const Update = ({updateTopic, currentTopic}) => {
        updateTopic(udTopic);
     }
 
+    // 이미지 업데이트 기능
+    const onImageUpdate = (imgUrl) =>{
+        setUdTopic({
+            ...udTopic,
+            img : imgUrl
+        });
+    }
+
     return(
-        <ChangeWrapper>
-            <Title>Update</Title>
+        <ChangeWrapper className='flex-around'>
+            <UploadImage image={img} onImageUpdate={onImageUpdate} />
             <ChangeInner  className="flex-colum" onSubmit={event=>{
                 event.preventDefault();
                 onUpdate();
@@ -35,7 +44,6 @@ const Update = ({updateTopic, currentTopic}) => {
                 <Button>Update</Button>
             </ChangeInner>
         </ChangeWrapper>
-        
     );
 }
 

@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-export const UploadImage = ({image, onImageUpload}) => {
+export const UploadImage = ({image, onImageUpload, onImageUpdate}) => {
+    
     const handleUpload = (e) =>{
         // 선택한 파일을 가져옴
         const file = e.target.files[0];
@@ -12,7 +13,8 @@ export const UploadImage = ({image, onImageUpload}) => {
             const reader = new FileReader();
             // 파일 읽기가 완료되면 결과를 image에 저장
             reader.onloadend = () =>{
-                onImageUpload(reader.result);
+                onImageUpload&&onImageUpload(reader.result);
+                onImageUpdate&&onImageUpdate(reader.result);
             };
 
             // 파일을 데이터 URL로 읽기 시작
