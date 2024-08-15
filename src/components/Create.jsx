@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { ChangeInner, ChangeWrapper, TextArea, Button, Title, Input} from '../styles/change';
+import React, { useState } from 'react';
+import { ChangeInner, ChangeWrapper, TextArea, Button, Input} from '../styles/change';
 import { UploadImage } from './UploadImage';
 import { v4 as uuid4 } from 'uuid';
 /*
@@ -13,25 +13,17 @@ import { v4 as uuid4 } from 'uuid';
 
 const Create = ({addTopic}) => {
     const [image, setImage] = useState(null);         // 이미지 URL을 저장하는 state
-    const linkNumber = useRef(1);                     // create로 생긴 페이지 링크 구별
 
      // topic 생성 기능
      const onCreate = (title,body) =>{
         const newTopic = {
-            key: linkNumber,
             link : `/new${uuid4()}`,
             title : title,
             body : body,
             img : image
         }
         addTopic(newTopic);  
-        linkNumber.current += 1; 
-       
     }
-
-    useEffect(()=>{
-        console.log(linkNumber.current)
-    },) 
 
     const onImageUpload = (imgUrl) =>{
         setImage(imgUrl);
