@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Topic = ({title,body,img}) =>{
+const Content = ({title,body,img}) =>{
     return(
         <TopicWrapper className="flex-around">
             <ImageWrapper>
@@ -15,8 +15,7 @@ const Topic = ({title,body,img}) =>{
     );
 }
 
-export default Topic;
-
+export default Content;
 
 const Article = styled.article`
     flex: 1;

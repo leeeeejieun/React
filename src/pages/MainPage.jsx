@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import { Routes,Route, useLocation} from "react-router-dom";
-import Content from '../components/Content';
-import Create from '../components/Create';
-import Update from '../components/Update';
-import Header from '../components/Header';
-import Nav from '../components/Nav';
-import Footer from '../components/Footer';
-import Modal from '../components/Modal';
+import * as Layout from "../components/common/layout"
+import * as Main from "../components/main"
+import Modal from '../components/common/ui/Modal';
 import styled from 'styled-components';
 import { MainPageLogic } from '../hooks/MainPageLogic';
 const MainPage = () => {
@@ -28,18 +24,18 @@ const MainPage = () => {
     return (
         <>
             <Wrapper className='flex-between'>
-                <Header />
-                <Nav topics={topics}/>
+                <Layout.Header />
+                <Layout.Nav topics={topics}/>
             </Wrapper>
 
             <Routes>
-                <Route path='/' element={<Content title="Welcome" body="web is ..." img="img/web.png"/>}></Route>
+                <Route path='/' element={<Main.Content title="Welcome" body="web is ..." img="img/web.png"/>}></Route>
                 {routeList}
-                <Route path='/create' element={<Create addTopic={addTopic}/>}/>
-                <Route path='/update' element={<Update updateTopic={updateTopic} currentTopic={currentTopic}/>}/>
+                <Route path='/create' element={<Main.Create addTopic={addTopic}/>}/>
+                <Route path='/update' element={<Main.Update updateTopic={updateTopic} currentTopic={currentTopic}/>}/>
             </Routes>
 
-            {(location.pathname !== '/create' && location.pathname !== '/update' ) && <Footer openModal={openModal}/>}
+            {(location.pathname !== '/create' && location.pathname !== '/update' ) && <Layout.Footer openModal={openModal}/>}
             {/* <p style={{marginBottom: "30rem"}}></p>   스크롤 방지 테스트 여백 설정 */}
             <Modal modal={modal} closeModal={closeModal} deleteTopic={deleteTopic} currentTopic={currentTopic}/>
         </>

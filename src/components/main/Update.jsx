@@ -1,5 +1,5 @@
 import React from 'react';
-import { TopicForm } from './common/TopicForm';
+import { TopicForm } from './TopicForm';
 
 const Update = ({updateTopic, currentTopic}) => {
 

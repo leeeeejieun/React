@@ -1,5 +1,5 @@
 import React from 'react';
-import { TopicForm } from './common/TopicForm';
+import { TopicForm } from './TopicForm';
 import { v4 as uuid4 } from 'uuid';
 
 const Create = ({addTopic}) => {
