@@ -7,7 +7,7 @@ const Footer = ({openModal}) =>{
     const location = useLocation();
     
     return( 
-        <FooterWrapper className="flex-center" $path={location.pathname}>
+        <FooterWrapper $path={location.pathname}>
              {/* true인 경우만 Update & Delete 추가 */}
              {location.pathname !== "/" &&   
                 <> 
@@ -30,6 +30,9 @@ export default Footer;
 */
 
 const FooterWrapper = styled.footer`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     width: 100%;
     bottom: 1.5rem;

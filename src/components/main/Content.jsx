@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 const Content = ({title,body,img}) =>{
     return(
-        <TopicWrapper className="flex-around">
+        <TopicWrapper>
             <ImageWrapper>
                 <img src={`${process.env.PUBLIC_URL}${img}`} alt="이미지 오류"/>
             </ImageWrapper>
-            <Article className="flex-colum">
+            <Article>
                 <h3>{title}</h3>
                 <p>{body}</p>
             </Article>
@@ -17,8 +17,22 @@ const Content = ({title,body,img}) =>{
 
 export default Content;
 
+const TopicWrapper = styled.div`
+    display: flex;
+    justify-content: space-around;
+    padding: 3rem;
+`;
+
+const ImageWrapper = styled.div`
+   width: 400px;
+   height: 350px;
+`;
+
 const Article = styled.article`
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
     transform: translateY(10%);
     gap: 2.5rem;
     & h3{
@@ -28,15 +42,4 @@ const Article = styled.article`
     & p { 
         font-size: 1.3rem;
     }
-`;
-
-const TopicWrapper = styled.div`
-    margin-top: 3.5rem;
-    padding: 0 5rem;
-`;
-
-const ImageWrapper = styled.div`
-    flex: 1;
-    max-width: 450px;
-    height: 350px;
 `;

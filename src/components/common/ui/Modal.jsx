@@ -40,11 +40,11 @@ const Modal = ({modal, closeModal, deleteTopic, currentTopic}) => {
     }
 
     return ReactDOM.createPortal(
-        <ModalWrapper className="flex-center">
+        <ModalWrapper>
             <ModalContent>
                 <Title>해당 게시글을 삭제하시겠습니까?</Title>
                 <Content>사진과 글이 모두 삭제됩니다.</Content>
-                <ButtonWrapper className="flex-end">
+                <ButtonWrapper>
                     <Button 
                         style={{color: "rgb(182,119,255)"}}
                         onClick={closeModal}
@@ -64,13 +64,15 @@ export default Modal;
 
 
 const ModalWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgb(0,0,0,0.3);
-    align-items: center;
 `;
 
 const ModalContent = styled.div`
@@ -94,6 +96,8 @@ const Content = styled.p`
 `;
 
 const ButtonWrapper = styled.div`
+    display: flex;
+    justify-content: end;
     position: relative;
     bottom: -40%;
 `;

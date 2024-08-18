@@ -1,12 +1,17 @@
 import styled from "styled-components";
 
 export const ChangeWrapper =  styled.article`
-    padding: 3rem;
+    display: flex;
+    justify-content: space-around;
     text-align: center;
-    margin-top: 2rem;
+    padding: 3rem;
 `;
 
 export const ChangeInner = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(10%);
     gap : 20px;
     
     // 자식 input 요소 스타일링

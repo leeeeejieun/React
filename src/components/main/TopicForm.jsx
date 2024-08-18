@@ -30,9 +30,9 @@ export const TopicForm = ({initialData = {}, onSubmit, action}) => {
     }
 
     return(
-    <ChangeWrapper className="flex-around">
+    <ChangeWrapper >
         <UploadImage image={topic.img} handleImageUpload={handleImageUpload}/>
-        <ChangeInner className="flex-colum" onSubmit={event =>{
+        <ChangeInner onSubmit={event =>{
             event.preventDefault();
             handleSubmit();
         }}>

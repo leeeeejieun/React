@@ -14,6 +14,7 @@ export const GlobalStyle = createGlobalStyle`
 
    body {
       -ms-overflow-style: none;
+      overflow: hidden;
       background: ${({theme}) => theme.bgColor};
       color: ${({theme}) => theme.textColor};
    }
@@ -42,31 +43,5 @@ export const GlobalStyle = createGlobalStyle`
       cursor: pointer;
       width: 100%;
       height: 100%;
-   }
-
-   .flex-center{
-      display: flex;
-      justify-content: center;
-   }
-
-   .flex-around{
-      display: flex;
-      justify-content: space-around;
-   }
-
-   .flex-between{
-      display: flex;
-      justify-content: space-between;
-   }
-
-   .flex-colum{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-   }
-
-   .flex-end {
-      display: flex;
-      justify-content: flex-end;
    }
 `;

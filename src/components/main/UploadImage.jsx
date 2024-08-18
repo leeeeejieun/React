@@ -47,7 +47,7 @@ export const UploadImage = ({image, handleImageUpload}) => {
 };
 
 const ImageWrapper = styled.div`
-    width: 350px;
+    width: 400px;
     height: 350px;
 `;
 
