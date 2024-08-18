@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import Nav from "./Nav";
-import ThemeToggle from "../ui/ThemeToggle"; 
-import { useTheme } from "../../../context/ThemeProvider";
+import ThemeToggle from '@ui/ThemeToggle'; 
+import { useTheme } from '@context/ThemeProvider';
 
 const Header = ({topics}) =>{
     const [ThemeMode, toggleTheme] = useTheme();

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Routes,Route, useLocation} from 'react-router-dom';
-import * as Main from '../components/main'
-import * as Layout from '../components/common/layout'
-import { Home } from '../components/main/Home';
-import Modal from '../components/common/ui/Modal';
-import { MainPageLogic } from '../hooks/MainPageLogic';
+import * as Main from '@components/main'
+import * as Layout from '@layout'
+import { Home } from '@main/Home';
+import Modal from '@ui/Modal';
+import { MainPageLogic } from '@hooks/MainPageLogic';
+
 const MainPage = () => {
 
     const {

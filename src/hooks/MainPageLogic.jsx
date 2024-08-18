@@ -2,7 +2,7 @@ import React, {useEffect, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import { Route } from "react-router-dom";
 import { useTopicManager } from "./useTopicManager";
-import Content from "../components/main/Content";
+import Content from '@main/Content';
 
 export function MainPageLogic(){
     const {topics, addTopic, updateTopic, deleteTopic} = useTopicManager();

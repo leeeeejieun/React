@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChangeWrapper, ChangeInner } from "../../styles/FormStyles";
+import { ChangeWrapper, ChangeInner } from '@styles/FormStyles';
 import { UploadImage } from "./UploadImage";
 
 export const TopicForm = ({initialData = {}, onSubmit, action}) => {
