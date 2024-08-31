@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Nav = ({topics}) => {
-    
-    const linkList = topics.map(topic =>(
-        <List key={topic.link}>
-             <Link to={topic.link}>{topic.title}</Link>
-        </List>
-    ));    
+const Nav = ({ topics }) => {
+    const linkList = useMemo(()=>{
+        return topics.map(topic =>(
+            <List key = {topic.link}>
+                 <Link to = {`/main${topic.link}`}>{topic.title}</Link>
+            </List>
+        ));
+    },[topics]);
 
     return(
             <ListWrapper>
@@ -19,10 +20,6 @@ const Nav = ({topics}) => {
 
 export default Nav;
 
-/*
-    & a : 모든 자손 a 태그를 선택
-    & > a : 직계 자식 a 태그만 선택
-*/
 
 const ListWrapper =  styled.ul`
     display: flex;

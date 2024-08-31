@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { ChangeWrapper, ChangeInner } from '@styles/FormStyles';
 import { UploadImage } from "./UploadImage";
+import styled from "styled-components";
 
 export const TopicForm = ({initialData = {}, onSubmit, action}) => {
     const ACTION_TYPE = action;
@@ -54,3 +54,41 @@ export const TopicForm = ({initialData = {}, onSubmit, action}) => {
     </ChangeWrapper>
     );
 }
+
+const ChangeWrapper =  styled.article`
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    padding: 3rem;
+`;
+
+const ChangeInner = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(5%);
+    gap : 20px;
+    
+    // 자식 input 요소 스타일링
+    > input {
+        width: 300px;
+        height: 40px;
+        border: 1px solid gray;
+    }
+
+    > textarea{
+        width: 300px;
+        height: 250px;
+        resize: horizontal;  
+        border: 1px solid gray;
+    }
+
+    > button{
+        width: 300px;
+        height: 40px;
+        border: 1px solid gray;
+        border-radius: 30px;
+        background-color: ${props => props.theme.bgColor};
+        color: ${props => props.theme.textColor};
+    }
+`

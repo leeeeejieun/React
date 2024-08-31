@@ -1,7 +1,7 @@
 import React from 'react';
-import MainPage from './pages/MainPage';
 import { ThemeProvider } from './context/ThemeProvider';
 import { GlobalStyle } from './styles/GlobalStyle';
+import Router from 'routes/Router';
 
 const App = () =>{
 
@@ -9,7 +9,7 @@ const App = () =>{
         <>   
             <ThemeProvider>
                 <GlobalStyle />
-                <MainPage  />
+                <Router  />
             </ThemeProvider>
         </>
     );

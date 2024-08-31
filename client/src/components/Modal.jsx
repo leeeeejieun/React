@@ -22,7 +22,6 @@ import ReactDOM from "react-dom"
 */
 
 const Modal = ({modal, closeModal, deleteTopic, currentTopic}) => {
-    
     // 모달창 외부 화면 스크롤 방지 구현
     if(!modal){
         document.body.style.overflow = 'auto';       // 모달창을 띄우지 않았을 땐 스크롤 정상 작동

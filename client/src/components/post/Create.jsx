@@ -1,8 +1,8 @@
 import React from 'react';
-import { TopicForm } from './TopicForm';
 import { v4 as uuid4 } from 'uuid';
+import { TopicForm } from './TopicForm';
 
-const Create = ({addTopic}) => {
+const Create = ({createTopic}) => {
 
      // topic 생성 기능
      const onCreate = (topicData) =>{
@@ -10,7 +10,7 @@ const Create = ({addTopic}) => {
             ...topicData,
             link : `/new${uuid4()}`,
         }
-        addTopic(newTopic);  
+        createTopic(newTopic);  
     }
 
     return(

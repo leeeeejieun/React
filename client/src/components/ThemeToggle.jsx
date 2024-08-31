@@ -12,9 +12,12 @@ const ThemeToggle = ({toggle, mode}) => {
 export default ThemeToggle;
 
 const ToggleWrapper = styled.button`
+   position: absolute;
+   right: 3%;
    font-size: 20px;
    width: 80px;
    height: 40px;
+   transform: translateY(-5%);
    border-radius: 30px;
    background-color: ${props => props.theme.bgColor};
    box-shadow: ${

@@ -1,7 +1,7 @@
 import React from 'react';
-import { lightTheme, darkTheme } from '../styles/mainTheme';
 import { createContext, useState, useContext, useCallback } from 'react';
 import { ThemeProvider as StyledProvider} from 'styled-components'; 
+import { lightTheme, darkTheme } from 'styles/Theme';
 
 /*
     Provider 컴포넌트를 제공하게 될 context 객체를 생성

@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const Content = ({title,body,img}) =>{
+const Content = ({title,body,img}) => {
     return(
         <TopicWrapper>
             <ImageWrapper>
-                <img src={`${process.env.PUBLIC_URL}${img}`} alt="이미지 오류"/>
+                <img src = {img} alt="이미지 오류"/>
             </ImageWrapper>
             <Article>
                 <h3>{title}</h3>
