@@ -7,14 +7,9 @@ const dotenv = require("dotenv");
 const app = express();
 dotenv.config();
 
-const db =  require("./src/config/db");
-
-app.get("/", (req, res) =>{
-    const query = "SELECT * FROM users";
-    db.query(query, (err, data)=>{
-        console.log(data[0]);
-    });
-    res.send("루트 페이지")
+const UserStorage = require("./src/modles/UserStorage");
+app.get("/", async (req,res)=>{
+    res.send("루트 페이지");
+    console.log(await UserStorage.getUserInfo("jieun"));
 });
-
 module.exports = app;
