@@ -33,7 +33,7 @@ const UserForm = ({formData})=> {
                 </VideoWrapper>
 
                 <FormWrapper gapValue={gapValue} marginValue={marginValue}  fontSize={fontSize}>
-                    <form action=""> 
+                    <form onSubmit={e => e.preventDefault()}> 
                         <h1>{fr_title}</h1>
                         {fr_msg !== undefined && <span>{fr_msg}</span> }
                         {inputs}
