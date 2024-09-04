@@ -13,7 +13,11 @@ const UserForm = ({formData})=> {
         inputs, 
         submit 
     } = formData;
-    
+
+   const gapValue = submit === "Register" ? "1rem" : "1.5rem";
+   const marginValue = submit === "Register" ? "0px" : "10px";
+   const fontSize = submit === "Register" ? "18px" : "25px";
+   
     return(
         <Wrapper>
             <Inner>
@@ -28,10 +32,10 @@ const UserForm = ({formData})=> {
                     </Bottom>
                 </VideoWrapper>
 
-                <FormWrapper>
+                <FormWrapper gapValue={gapValue} marginValue={marginValue}  fontSize={fontSize}>
                     <form action=""> 
                         <h1>{fr_title}</h1>
-                        <span>{fr_msg}</span>
+                        {fr_msg !== undefined && <span>{fr_msg}</span> }
                         {inputs}
                         <Button type="submit">{submit}</Button> 
                     </form>
@@ -116,13 +120,13 @@ const FormWrapper = styled.form`
         display: flex;
         flex-direction: column;
         width: 65%;
-        gap: 1.5em;
+        gap: ${props => props.gapValue};
 
         > h1 {
-            font-size: 25px;
+            font-size: ${props => props.fontSize};
             text-align: center;
             font-weight: 800;
-            margin-bottom: 10px;
+            margin-bottom: ${props => props.marginValue};
             letter-spacing: 1.3px;
         }
         
