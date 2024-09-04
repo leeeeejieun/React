@@ -15,7 +15,7 @@ const ThemeProvider = ({children}) => {
     // 테마 모드 상태 & 테마 변경 함수
     const [ThemeMode, setThemeMode] = useState(localTheme) || "light";
     // 현재 테마 선택
-    const theme = ThemeMode === "light" ? lightTheme : darkTheme;
+    const theme = ThemeMode === "dark" ? lightTheme : darkTheme;
     
     return(
         <ThemeContext.Provider value={{ThemeMode, setThemeMode}}>

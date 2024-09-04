@@ -8,7 +8,7 @@ const HomePage = () =>{
         <>
             <Header />
             <Wrapper>
-                <Link to="/main/html"><h1>WELCOME</h1></Link>
+                <Link to="/login"><h1>WELCOME</h1></Link>
             </Wrapper>
         </>
     );

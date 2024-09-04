@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Noto Sans", sans-serif;
+    font-family: "Montserrat", sans-serif;
    }
 
    body {
@@ -21,27 +21,38 @@ export const GlobalStyle = createGlobalStyle`
    ::-webkit-scrollbar {
      display: none;
    }
-   
-   
+      
    a {
       text-decoration: none;
       color: inherit;  /* 부모 요소에게 상속 받은 값을 사용*/
       cursor: pointer;
    }
 
-   ul,
-   li{
+   li { 
       list-style: none;
    }
 
-   button{
+   button {
       border: none;
       cursor: pointer;
    }
 
-   img {
+   img, video {
       cursor: pointer;
-      width: 100%;
+      width: auto;
       height: 100%;
    }
+
+   .message { 
+      display: none;
+   }
+
+   .showMessage {
+      display: block;
+      color : ${props =>props.textColor};
+      background-color : rgb(255,0,0);
+      border-radius: 3px;
+      text-align: center;
+   }
+
 `;
