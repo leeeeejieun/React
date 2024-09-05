@@ -6,14 +6,23 @@ const Input = ({
     id,
     placeholder,
     icon,
+    setState,
     }) => {
+
+    const handleChange = (e) => {
+        setState(e.target.value);
+    }
 
     return (
         <InputWrapper>
         <label htmlFor="username">{label}</label>
             <InputInner>
                 {icon}
-                <input type="text" id={id} placeholder={placeholder}/>                          
+                <input type="text" 
+                       id = {id} 
+                       placeholder = {placeholder}
+                       onChange = {handleChange}
+                />                          
             </InputInner>
         </InputWrapper>
     );

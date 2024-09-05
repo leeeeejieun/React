@@ -32,7 +32,7 @@ const UserForm = ({formData})=> {
                     </Bottom>
                 </VideoWrapper>
 
-                <FormWrapper gapValue={gapValue} marginValue={marginValue}  fontSize={fontSize}>
+                <FormWrapper $gapValue={gapValue} $marginValue={marginValue}  fontSize={fontSize}>
                     <form onSubmit={e => e.preventDefault()}> 
                         <h1>{fr_title}</h1>
                         {fr_msg !== undefined && <span>{fr_msg}</span> }
@@ -120,13 +120,13 @@ const FormWrapper = styled.div`
         display: flex;
         flex-direction: column;
         width: 65%;
-        gap: ${props => props.gapValue};
+        gap: ${({ $gapValue }) => $gapValue};
 
         > h1 {
             font-size: ${props => props.fontSize};
             text-align: center;
             font-weight: 800;
-            margin-bottom: ${props => props.marginValue};
+            margin-bottom: ${({$marginValue}) => $marginValue};
             letter-spacing: 1.3px;
         }
         
