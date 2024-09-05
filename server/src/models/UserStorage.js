@@ -1,5 +1,6 @@
 "use strict";
 
+const { resource } = require("../../app");
 const db = require("../config/db");
 
 // 사용자 정보 저장 클래스
@@ -10,12 +11,27 @@ class UserStorage{
         return new Promise((resolve, reject) => {
             const query =  "SELECT * FROM users WHERE id = ?;"
             db.query(query, [id], (err, data) => {
-                if(err) reject("해당 사용자가 존재하지 않음");
+                if(err) reject("로그인 중 DB 쿼리 오류");
 
-                resolve(data[0]);
+                resolve(data[0]);  // 일치하는 id가 없으면 undefined 반환
             })
+        });
+    };
+
+    // 사용자 추가
+    static async insertUser (userInfo) {
+        const {id, email, password} = userInfo;
+        return new Promise((resolve, reject) => {
+            const query = "INSERT INTO users(id, email, password) VALUES(?, ?, ?);"
+            db.query(query, [id, email, password], 
+            (err) => {
+                if(err) reject("회원가입 중 DB 쿼리 오류");
+                
+                resolve({success : "회원가입 성공"});
+             });
         });
     };
 };
 
 module.exports = UserStorage;
+
