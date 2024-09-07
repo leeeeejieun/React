@@ -1,6 +1,5 @@
 "use strict";
 
-const { resource } = require("../../app");
 const db = require("../config/db");
 
 // 사용자 정보 저장 클래스
@@ -21,6 +20,7 @@ class UserStorage{
     // 사용자 추가
     static async insertUser (userInfo) {
         const {id, email, password} = userInfo;
+
         return new Promise((resolve, reject) => {
             const query = "INSERT INTO users(id, email, password) VALUES(?, ?, ?);"
             db.query(query, [id, email, password], 

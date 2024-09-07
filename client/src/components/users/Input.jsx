@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const Input = ({
-    label,
     id,
     placeholder,
     icon,
@@ -15,7 +14,7 @@ const Input = ({
 
     return (
         <InputWrapper>
-        <label htmlFor="username">{label}</label>
+        <label htmlFor={id}>{id}</label>
             <InputInner>
                 {icon}
                 <input type="text" 

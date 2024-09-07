@@ -6,13 +6,16 @@ import { FaLock } from "react-icons/fa"
 import { IoIosMail } from "react-icons/io";
 import { FaRegCheckCircle } from "react-icons/fa";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () =>{
-    const SERVER_URL = "http://localhost:4000";
+    const SERVER_URL = "http://localhost:4000";   // 서버 주소
     const [id, setID] = useState("");
     const [mail, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [ckPassword, setCkPassword] = useState("");
+    const passwordMatch = password === ckPassword;
+    const navigate = useNavigate();
 
     const formData = {
         bt_msg: "Already have an account?",
@@ -21,43 +24,65 @@ const RegisterPage = () =>{
         fr_title: "CREATE YOUR ACCOUNT",
         inputs : [
             <Input 
-                label="id" 
                 id="id" 
                 placeholder="Enter Username"
                 setState={setID}
                 icon={<FaUser/>}
+                 key="id"
             />,
             <Input 
-            label="mail" 
-            id="mail" 
-            placeholder="Enter Mail"
+            id="email" 
+            placeholder="Enter EMail"
             setState={setEmail}
             icon={<IoIosMail/>}
+            key="email"
             />,
             <Input 
-            label="password" 
             id="password" 
             placeholder="Enter Password"
             setState={setPassword}
             icon={<FaLock />}
+            key="password"
             />,
             <Input 
-            label="confirmPassword" 
             id="confirmPassword"
             placeholder="Enter ConfirmPassword"
             setState={setCkPassword}
             icon={<FaRegCheckCircle/>}
+            key="confirmPassword"
             />
         ],
         submit: "Register",
       };
 
-      console.log(ckPassword);
-      console.log(mail)
-      console.log(id);
+     const postRegister = async () => {
+        if (!passwordMatch) {
+            alert("비밀번호가 일치하지 않습니다.");
+            setCkPassword("");
+        }
+        
+        else {
+            await axios.post(`${SERVER_URL}/register`, {
+                id : id,
+                email : mail,
+                password : password
+            }).then(res => {
+                const response = res.data;
+                if(response.success){
+                    navigate("/main/html");
+                }
+                else{
+                    alert(response.msg);
+                }
+            }).catch(err => {
+                console.log(err);
+            })
+        }
+    }
+
     return(
-        <UserForm formData={formData}/>
-    );
+        <UserForm formData={formData} handleSubmit={postRegister}/>
+    )
 };
 
 export default RegisterPage;

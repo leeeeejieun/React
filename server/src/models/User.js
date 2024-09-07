@@ -39,8 +39,9 @@ class User {
             const checkUser = await UserStorage.getUserInfo(client.id);
    
             // id가 존재하는 경우
-            if(checkUser) return {success : false, msg: "이미 존재하는 id입니다."};
-
+            if(checkUser) {
+                 return {success: false, msg: "이미 존재하는 아이디입니다."};
+            }
             // id가 존재하지 않은 경우
             const response = await UserStorage.insertUser(client);
             return response;

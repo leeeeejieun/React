@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import video from "../../assets/login_video.mp4";
 
-const UserForm = ({formData})=> {
+const UserForm = ({formData, handleSubmit})=> {
     const { 
         bt_msg, 
         bt_link, 
@@ -11,13 +11,18 @@ const UserForm = ({formData})=> {
         fr_title,
         fr_msg, 
         inputs, 
-        submit 
+        submit ,
     } = formData;
 
    const gapValue = submit === "Register" ? "1rem" : "1.5rem";
    const marginValue = submit === "Register" ? "0px" : "10px";
    const fontSize = submit === "Register" ? "18px" : "25px";
-   
+
+   const onSubmit = (e) =>{
+        e.preventDefault();
+        handleSubmit();
+   }
+
     return(
         <Wrapper>
             <Inner>
@@ -33,7 +38,7 @@ const UserForm = ({formData})=> {
                 </VideoWrapper>
 
                 <FormWrapper $gapValue={gapValue} $marginValue={marginValue}  fontSize={fontSize}>
-                    <form onSubmit={e => e.preventDefault()}> 
+                    <form onSubmit={onSubmit}> 
                         <h1>{fr_title}</h1>
                         {fr_msg !== undefined && <span>{fr_msg}</span> }
                         {inputs}
