@@ -28,7 +28,7 @@ const RegisterPage = () =>{
                 placeholder="Enter Username"
                 setState={setID}
                 icon={<FaUser/>}
-                 key="id"
+                key="id"
             />,
             <Input 
             id="email" 
@@ -69,7 +69,7 @@ const RegisterPage = () =>{
             }).then(res => {
                 const response = res.data;
                 if(response.success){
-                    navigate("/main/html");
+                    navigate("/login");
                 }
                 else{
                     alert(response.msg);

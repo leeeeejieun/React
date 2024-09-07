@@ -40,7 +40,7 @@ const UserForm = ({formData, handleSubmit})=> {
                 <FormWrapper $gapValue={gapValue} $marginValue={marginValue}  fontSize={fontSize}>
                     <form onSubmit={onSubmit}> 
                         <h1>{fr_title}</h1>
-                        {fr_msg !== undefined && <span>{fr_msg}</span> }
+                        {fr_msg !== "" && <span>{fr_msg}</span> }
                         {inputs}
                         <Button type="submit">{submit}</Button> 
                     </form>
