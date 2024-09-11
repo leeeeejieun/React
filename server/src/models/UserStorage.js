@@ -10,9 +10,9 @@ class UserStorage{
         return new Promise((resolve, reject) => {
             const query =  "SELECT * FROM users WHERE id = ?;"
             db.query(query, [id], (err, data) => {
-                if(err) reject("로그인 중 DB 쿼리 오류");
+                if(err) reject(err);
 
-                resolve(data[0]);  // 일치하는 id가 없으면 undefined 반환
+                resolve(data[0]);  
             })
         });
     };
@@ -25,9 +25,9 @@ class UserStorage{
             const query = "INSERT INTO users(id, email, password) VALUES(?, ?, ?);"
             db.query(query, [id, email, password], 
             (err) => {
-                if(err) reject("회원가입 중 DB 쿼리 오류");
+                if(err) reject(err);
                 
-                resolve({success : "회원가입 성공"});
+                resolve({code: 201, message: "회원가입에 성공하였습니다."});
              });
         });
     };

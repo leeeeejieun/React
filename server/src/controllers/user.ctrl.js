@@ -8,12 +8,12 @@ const userCtrl = {
         login : async (req, res) => {
             const user = new User(req.body);
             const response = await user.login();
-            res.send(response);
+            res.status(response.code).json({message: response.message});
         },
         register : async (req, res) =>{
             const user = new User(req.body);
             const response = await user.register();
-            res.send(response);
+            res.status(response.code).json({message: response.message});
         }
     }
 };
