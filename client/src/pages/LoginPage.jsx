@@ -39,18 +39,18 @@ const LoginPage = () =>{
       };
 
     const postLogin =  async () =>{
-        await axios.post(`${SERVER_URL}/login`, {
-            id : id,
-            password : password
-        }).then(res => {
-            const response = res.data;
-            if(response.success){
+        try{
+            const response = await axios.post(`${SERVER_URL}/login`, {
+                id : id,
+                password : password,
+            });
+            
+            if(response.status === 200){
                 navigate("/main/html");
             }
-            else {
-                setLoginStat(response.msg);
-            }
-        })
+        }catch(err){
+            setLoginStat(err.response.data.message);
+        }
     }
 
     return(

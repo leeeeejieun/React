@@ -22,6 +22,7 @@ const RegisterPage = () =>{
         bt_link: "/login",
         bt_button: "Login",
         fr_title: "CREATE YOUR ACCOUNT",
+        fr_msg: "",
         inputs : [
             <Input 
                 id="id" 
@@ -62,27 +63,25 @@ const RegisterPage = () =>{
         }
         
         else {
-            await axios.post(`${SERVER_URL}/register`, {
-                id : id,
-                email : mail,
-                password : password
-            }).then(res => {
-                const response = res.data;
-                if(response.success){
+            try{
+                const response = await axios.post(`${SERVER_URL}/register`, {
+                    id : id,
+                    email : mail,
+                    password : password
+                });
+    
+                if(response.status ===  201){
                     navigate("/login");
                 }
-                else{
-                    alert(response.msg);
-                }
-            }).catch(err => {
-                console.log(err);
-            })
-        }
-    }
+            }catch(err){
+                alert(err.response.data.message);
+            };
+        };
+    };
 
     return(
         <UserForm formData={formData} handleSubmit={postRegister}/>
-    )
+    );
 };
 
 export default RegisterPage;
