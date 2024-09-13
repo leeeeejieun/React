@@ -41,11 +41,13 @@ const LoginPage = () =>{
     const postLogin =  async () =>{
         try{
             const response = await axios.post(`${SERVER_URL}/login`, {
-                id : id,
-                password : password,
+                id: id,
+                password: password,
             });
             
             if(response.status === 200){
+                // 응답 헤더에서 AccessToken을 가져오기
+                localStorage.setItem("accessToken", response.data.accessToken);
                 navigate("/main/html");
             }
         }catch(err){
