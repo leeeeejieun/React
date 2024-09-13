@@ -1,7 +1,7 @@
 "use strict";
 
 const UserStorage = require("./UserStorage");
-const generateToken = require("../utils/jwt");
+const { generateToken } = require("../utils/jwt");
 
 // 사용자 정보 처리 담당
 class User {
