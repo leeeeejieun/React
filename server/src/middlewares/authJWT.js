@@ -21,7 +21,7 @@ const authToken = (req, res, next) => {
             req.user = result.decoded;  // 요청 객체에 사용자 정보 추가
             next();   // 다음 미들웨어로 이동
         } else {
-            res.status(401).json({ message: "토큰이 만료되었습니다." });
+            res.status(401).json({ message: "AccessToken이 만료되었습니다." });
         }
     } catch (error) {
         return res.status(401).json({ message: "로그인을 해주세요." });

@@ -7,7 +7,7 @@ module.exports = {
   sign: (payload) => {
       return jwt.sign(payload, secretKey, {
         algorithm: "HS256",
-        expiresIn: '10s'  // 테스트를 위해 10초로 설정(본 설정 값은 1h)
+        expiresIn: '30m'  // 테스트를 위해 10초로 설정(본 설정 값은 1h)
       });
   },
   // Access Token 유효성 검사
@@ -17,7 +17,7 @@ module.exports = {
       decoded = jwt.verify(token, secretKey);
       return {
         ok: true,
-        decoded    // 검증된 사용자 정보 반환
+        decoded,    // 검증된 사용자 정보 반환
       };
     } catch (error) {
       return {
@@ -31,16 +31,22 @@ module.exports = {
     // refresh token은 payload 없이 발급
     return jwt.sign({}, secretKey, {
       algorithm: "HS256",
-      expiresIn: "10s",    // 보통 2주로 설정
+      expiresIn: "30m",    // 보통 2주로 설정
     });
   },
   // RefreshToken 유효성 검사
   refreshVerify: (token) =>{
     try {
-      jwt.verify(token, secretKey);
-      return true;
+      const decoded = jwt.verify(token, secretKey);
+      return{
+        ok: true,
+        decoded,
+      };
     }catch(error) {
-      return false;
+      return {
+        ok: false,
+        message : error.message,
+      };
     }
   }
 };
