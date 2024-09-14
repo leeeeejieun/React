@@ -1,7 +1,7 @@
 "use strict";
 
 const UserStorage = require("./UserStorage");
-const { generateToken } = require("../utils/jwt");
+const jwt = require("../utils/jwt")
 
 // 사용자 정보 처리 담당
 class User {
@@ -26,15 +26,15 @@ class User {
                 // id와 password가 일치한지 확인
                 if (client.id === id && client.password === password){
                     // JWT 토큰 생성
-                    const accessToken = generateToken({ id: id });
-                    return {code: 200, message: "로그인에 성공하였습니다.", accessToken};
+                    const accessToken = jwt.sign({ id: id });
+                    const refreshToken = jwt.refresh();
+                    return {code: 200, message: "로그인에 성공하였습니다.", accessToken, refreshToken};
                 }
     
                 else {
                     return {code: 401, message: "비밀번호가 일치하지 않습니다."};
                 }
             }catch(err){
-                console.log(err);
                 return { code: 400, message: "로그인에 실패하였습니다."};
          };
      };

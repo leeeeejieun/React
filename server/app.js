@@ -10,7 +10,7 @@ const app = express();
 dotenv.config();
 
 // 라우팅
-const home = require("./src/routes/home");
+const home = require("./src/routes");
 
 // 미들웨어
 app.use(cors({
