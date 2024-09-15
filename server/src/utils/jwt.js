@@ -1,6 +1,7 @@
 "use strict";
 const jwt = require('jsonwebtoken'); 
 const secretKey = process.env.JWT_SECRET_KEY;
+const db = require("../config/db");
 
 module.exports = {
   // AccessToken 발급
@@ -48,5 +49,17 @@ module.exports = {
         message : error.message,
       };
     }
+  },
+  // RefreshToken을  DB에 저장
+  saveRefreshTokens: async (userId, token) => {
+      return new Promise((resolve, reject) => {
+        const query = 'INSERT INTO tokens (userId, refreshToken) VALUES(?, ?);'
+        db.query(query, [userId, token],
+          (err) => {
+            if(err) reject(err);
+
+            resolve(console.log("refreshToken 생성 완료"));
+          });
+      });
   }
 };

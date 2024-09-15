@@ -4,7 +4,7 @@ const jwt = require("../utils/jwt");
 const refresh = async (req, res) => {
     // 쿠키를 통해 현재 refreshToken을 받아옴
     const refreshToken = req.cookies.refreshToken;
-
+    
     if (!refreshToken) {
         return res.status(401).json({ message: "로그인을 해주세요." });
     }    
