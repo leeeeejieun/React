@@ -1,7 +1,8 @@
 "use strict";
-const jwt = require("../utils/jwt");
+const jwt = require("../utils/jwt")
+const refresh = require("../models/TokenStorage");
 
-const refresh = async (req, res) => {
+const refreshCtrl = async (req, res) => {
     // 쿠키를 통해 현재 refreshToken을 받아옴
     const refreshToken = req.cookies.refreshToken;
     
@@ -10,7 +11,7 @@ const refresh = async (req, res) => {
     }    
 
     // DB에서 RefreshToken 조회
-    const checkUser = await jwt.checkUser(refreshToken);
+    const checkUser = await refresh.checkUser(refreshToken);
 
     if(!checkUser) {
          return res.status(403).json({ message: "RefreshToken이 유효하지 않습니다."});
@@ -27,4 +28,4 @@ const refresh = async (req, res) => {
      res.json({message: "AccessToken 재발급 완료", newAccessToken});
 }
 
-module.exports = refresh;
+module.exports = refreshCtrl;

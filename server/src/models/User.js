@@ -2,6 +2,7 @@
 
 const UserStorage = require("./UserStorage");
 const jwt = require("../utils/jwt")
+const refresh = require("../models/TokenStorage");
 
 // 사용자 정보 처리 담당
 class User {
@@ -30,7 +31,7 @@ class User {
                     const refreshToken = jwt.refresh();
                  
                     // DB에 refreshToken 저장
-                    jwt.saveRefreshTokens(id, refreshToken);
+                    refresh.saveRefreshTokens(id, refreshToken);
                     return {code: 200, message: "로그인에 성공하였습니다.", accessToken, refreshToken};
                 }
     

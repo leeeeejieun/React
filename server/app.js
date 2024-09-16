@@ -10,7 +10,7 @@ const app = express();
 dotenv.config();
 
 // 라우팅
-const home = require("./src/routes/home");
+const router = require("./src/routes");
 
 // 미들웨어
 app.use(cors({
@@ -20,6 +20,6 @@ app.use(cors({
 app.use(cookieParser());                     
 app.use(express.json());     
 app.use(express.urlencoded({ extended: false }));  
-app.use("/", home);    // 루트 경로로 들어온 요청을 home 라우터로 전달
+app.use("/", router);  
 
 module.exports = app;

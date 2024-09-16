@@ -33,4 +33,4 @@ const userCtrl = {
     }
 };
 
-module.exports = userCtrl;
+module.exports =  userCtrl;
