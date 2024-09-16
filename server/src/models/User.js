@@ -28,6 +28,7 @@ class User {
                     // JWT 토큰 생성
                     const accessToken = jwt.sign({ id: id });
                     const refreshToken = jwt.refresh();
+                 
                     // DB에 refreshToken 저장
                     jwt.saveRefreshTokens(id, refreshToken);
                     return {code: 200, message: "로그인에 성공하였습니다.", accessToken, refreshToken};

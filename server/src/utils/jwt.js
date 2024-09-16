@@ -8,7 +8,7 @@ module.exports = {
   sign: (payload) => {
       return jwt.sign(payload, secretKey, {
         algorithm: "HS256",
-        expiresIn: '30m'  // 테스트를 위해 10초로 설정(본 설정 값은 1h)
+        expiresIn: '30m'  
       });
   },
   // Access Token 유효성 검사
@@ -32,7 +32,7 @@ module.exports = {
     // refresh token은 payload 없이 발급
     return jwt.sign({}, secretKey, {
       algorithm: "HS256",
-      expiresIn: "30m",    // 보통 2주로 설정
+      expiresIn: "60 * 60 * 24 * 14",    // 보통 2주로 설정
     });
   },
   // RefreshToken 유효성 검사
@@ -58,8 +58,17 @@ module.exports = {
           (err) => {
             if(err) reject(err);
 
-            resolve(console.log("refreshToken 생성 완료"));
+            resolve({message: "refreshToken 생성 완료"})
           });
       });
-  }
+  },
+  checkUser: async(refreshToken) => {
+    return new Promise((resolve, reject) => {
+      const query = 'SELECT userId FROM tokens WHERE refreshToken = ?;'
+      db.query(query, [refreshToken], (err, data) => {
+          if(err) reject(err)
+
+      resolve(data[0]);
+    });
+  })}
 };
