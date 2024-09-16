@@ -32,7 +32,7 @@ module.exports = {
     // refresh token은 payload 없이 발급
     return jwt.sign({}, secretKey, {
       algorithm: "HS256",
-      expiresIn: "60 * 60 * 24 * 14",    // 보통 2주로 설정
+      expiresIn: "14d",    // 보통 2주로 설정
     });
   },
   // RefreshToken 유효성 검사
@@ -52,23 +52,21 @@ module.exports = {
   },
   // RefreshToken을  DB에 저장
   saveRefreshTokens: async (userId, token) => {
-      return new Promise((resolve, reject) => {
-        const query = 'INSERT INTO tokens (userId, refreshToken) VALUES(?, ?);'
-        db.query(query, [userId, token],
-          (err) => {
-            if(err) reject(err);
-
-            resolve({message: "refreshToken 생성 완료"})
-          });
-      });
+    try {
+      const query = 'INSERT INTO tokens (userId, refreshToken) VALUES(?, ?);'
+      await db.connection(query, [userId, token]);
+      return {message: "refreshToken 생성 완료"};
+    }catch(err) {
+      console.log(err);
+    }
   },
   checkUser: async(refreshToken) => {
-    return new Promise((resolve, reject) => {
-      const query = 'SELECT userId FROM tokens WHERE refreshToken = ?;'
-      db.query(query, [refreshToken], (err, data) => {
-          if(err) reject(err)
-
-      resolve(data[0]);
-    });
-  })}
+    try {
+       const query = 'SELECT userId FROM tokens WHERE refreshToken = ?;'
+       const result = await db.connection(query, [refreshToken]);
+       return result;
+    }catch (err) {
+      console.log(err);
+    }
+  }
 };

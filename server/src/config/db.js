@@ -1,16 +1,25 @@
 "use strict";
 
-const mysql = require("mysql2");
+const mysql = require("mysql2/promise");
 
-// DB 연결 설정
-const db = mysql.createConnection({
+// 커넥션 풀 생성
+const pool = mysql.createPool({
+    connectionLimit: 10, // default = 10
     host : process.env.DB_HOST,
     user : process.env.DB_USER,
     password : process.env.DB_PASSWORD,
     database : process.env.DB_DATABASE
 });
 
-// DB 연결 요청
-db.connect();
 
-module.exports = db;
+// query 모듈화
+module.exports = {
+    connection: async(query, values = []) => {
+        try {
+            const [result] = await pool.query(query, values);
+            return result[0];
+        }catch(err) {
+            return err;
+        }
+    }
+}

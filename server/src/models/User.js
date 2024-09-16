@@ -21,8 +21,8 @@ class User {
                     return {code: 401, message: "사용자 정보를 찾을 수 없습니다."};
                 }
     
-                const {id, password} = userInfo;
-
+                const {id, password} = userInfo;  
+              
                 // id와 password가 일치한지 확인
                 if (client.id === id && client.password === password){
                     // JWT 토큰 생성
