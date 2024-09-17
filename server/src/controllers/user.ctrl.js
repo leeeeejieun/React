@@ -25,6 +25,11 @@ const userCtrl = {
                 res.status(response.code).json({message: response.message});
             }
         },
+        logout : async (req, res) => {
+            const user = new User(req.body);
+            const response = await user.logout(req.body);
+            res.status(response.code).json({message: response.message});
+        },
         register : async (req, res) =>{
             const user = new User(req.body);
             const response = await user.register();

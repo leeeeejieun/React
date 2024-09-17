@@ -10,7 +10,7 @@ class User {
     constructor(body){  
         this.body = body;
     }
-
+    
     // 로그인
     async login() {
             const client = this.body;
@@ -31,7 +31,7 @@ class User {
                     const refreshToken = jwt.refresh();
                  
                     // DB에 refreshToken 저장
-                    refresh.saveRefreshTokens(id, refreshToken);
+                    await refresh.saveRefreshTokens(id, refreshToken);
                     return {code: 200, message: "로그인에 성공하였습니다.", accessToken, refreshToken};
                 }
     
@@ -43,6 +43,15 @@ class User {
          };
      };
 
+     async logout() {
+        try {
+            const client = this.body;
+            await refresh.deleteRefresh(client.id);
+            return { code: 204, message: "로그아웃을 완료했습니다."};
+        }catch(err) {
+            return {code: 401, message: "로그인을 하지 않았습니다."};
+        }
+     }
 
      async register() {
         try {
