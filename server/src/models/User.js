@@ -53,8 +53,14 @@ class User {
      async register() {
         const client = this.body;
         try {
+            const {id, email, password} = client;
+
+            if(!id || !email|| !password){
+                throw err;
+            }
+
             // id 중복 체크
-            const checkUser = await UserStorage.getUserInfo(client.id);
+            const checkUser = await UserStorage.getUserInfo(id);
             if(checkUser) {
                     return {code: 409, message: "이미 존재하는 아이디입니다."};
             }
