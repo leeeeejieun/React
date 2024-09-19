@@ -3,6 +3,7 @@
 const UserStorage = require("./UserStorage");
 const jwt = require("../utils/jwt")
 const refresh = require("../models/TokenStorage");
+const user = require("../utils/user");
 
 // 사용자 정보 처리 담당
 class User {
@@ -17,15 +18,17 @@ class User {
         try {
             const userInfo = await UserStorage.getUserInfo(client.id);
 
-            // undefined인 경우
+            // id가 없는 경우
             if(!userInfo) {
                 return {code: 401, message: "사용자 정보를 찾을 수 없습니다."};
             }
     
             const {id, password} = userInfo;  
+            // 해싱된 비밀번호와 일치한지 확인
+            const isPasswordCorrect = user.hashedPassword(password, client.password);
             
-            // id와 password가 일치한지 확인
-            if (client.id === id && client.password === password){
+            // id와 password가 모두 일치한지 확인
+            if (client.id === id && isPasswordCorrect){
                 // JWT 토큰 생성
                 const accessToken = jwt.sign({ id: id });
                 const refreshToken = jwt.refresh();
@@ -66,7 +69,9 @@ class User {
             }
 
             // DB에 사용자 추가 요청 
-            await UserStorage.insertUser(client);
+            const hashedPassword = await user.hashedPassword(password);
+            const newUser = {id, email, hashedPassword};
+            await UserStorage.insertUser(newUser);
             return {code : 201};
         }catch(err) {throw err};
     };  

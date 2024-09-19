@@ -1,6 +1,7 @@
 "use strict";
 
 const db = require("../config/db");
+const user = require("../utils/user");
 
 // 사용자 정보 저장 클래스
 class UserStorage{
@@ -14,9 +15,9 @@ class UserStorage{
    
     // 새로운 사용자 정보를 DB에 저장
     static async insertUser (userInfo) {
-        const {id, email, password} = userInfo;
+            const {id, email, hashedPassword} = userInfo;
             const query = "INSERT INTO users(id, email, password) VALUES(?, ?, ?);"
-            db.connection(query, [id, email, password]);
+            await db.connection(query, [id, email, hashedPassword]);
     };
 };
 
