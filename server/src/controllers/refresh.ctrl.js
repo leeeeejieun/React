@@ -1,6 +1,7 @@
 "use strict";
 const jwt = require("../utils/jwt")
 const refresh = require("../models/TokenStorage");
+const { compareSync } = require("bcrypt");
 
 const refreshCtrl = async (req, res) => {
     try {
@@ -26,9 +27,9 @@ const refreshCtrl = async (req, res) => {
 
         // AccessToken 재발급
         const newAccessToken = jwt.sign({id : user});
-        res.json({message: "AccessToken 재발급 완료", newAccessToken});
+        return res.status(200).json({ newAccessToken : newAccessToken });
     }catch(err) {
-        res.status(500).json({ message: "DB 오류 발생" });
+        return res.status(500).json({ message: "DB 오류 발생" });
     }
 }
 

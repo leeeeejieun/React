@@ -9,9 +9,9 @@ const refreshCtrl = require("../controllers/refresh.ctrl");
 const authToken = require("../middlewares/authJWT");
 
 router.post("/login", userCtrl.process.login);
-router.post("/register", userCtrl.process.register);
 router.delete("/logout",userCtrl.process.logout);
-router.post("/refresh", refreshCtrl);
+router.post("/users", userCtrl.process.register);
+router.post("/tokens", refreshCtrl);
 
 // 테스트용 라우터들
 router.get("/test",authToken, (req,res)=>{
