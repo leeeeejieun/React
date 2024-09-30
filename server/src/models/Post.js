@@ -1,27 +1,23 @@
 "use strict";
 
-const fs = require('fs');
-
-const PostStorage = require("./PostStorage");
-const user = require('../utils/user');
+const PostStorage = require('./PostStorage');
+const s3 = require('../utils/s3')
 
 class Post {
 
-    constructor(body) {
+    constructor(body, file) {
         this.body = body;
+        this.file = file;
     }
 
+    // 게시글 추가
     async create() {
-        const {
-            userId,
-            title,
-            content
-        } = this.body;
+        const {userId, title, content} = this.body;
+        const image = this.file;
 
-        // 해당 유저의 게시글 디렉터리 내 이미지 불러오기
-        const image = fs.readdirSync(`./src/images/post_images/${userId}`);
-        const postInfo = {userId, title, content, image}
         try {
+            const image_path = await s3.imageUploader(image, userId); // 이미지 업로드
+            const postInfo = {userId, title, content, image_path};
             await PostStorage.createPost(postInfo);
             return {code: 200};
         } catch(err) {throw err};

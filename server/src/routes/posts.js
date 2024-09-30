@@ -3,11 +3,9 @@
 const express = require("express");
 const router = express.Router();
 
-
-const upload = require("../utils/multer");
+const s3 = require('../utils/s3');
 const postCtrl = require("../controllers/posts.ctrl");
 
-router.post('/', upload.single('postImg'), postCtrl.process.create)
-
+router.post('/', s3.upload.single('image'), postCtrl.process.create)
 
 module.exports = router;

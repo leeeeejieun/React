@@ -55,6 +55,7 @@ class User {
     // id가 중복되지 않은 경우, 입력 받은 id, email, password를 DB에 저장하여 회원가입 처리
      async register() {
         const client = this.body;
+        console.log(client)
         try {
             const {id, email, password} = client;
 

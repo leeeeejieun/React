@@ -10,11 +10,11 @@ class PostStorage {
                 userId,
                 title,
                 content,
-                image
+                image_path
             } =  postInfo;
-
+           
             const query = "INSERT INTO posts(userId, title, content, image) VALUES(?, ?, ?, ?);"
-            await db.connection(query,[userId, title, content, image]);
+            await db.connection(query,[userId, title, content, image_path]);
         } catch (err) {throw err};
     };
 };
