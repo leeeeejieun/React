@@ -64,12 +64,12 @@ const RegisterPage = () =>{
         
         else {
             try{
-                const response = await axios.post(`${SERVER_URL}/register`, {
+                const response = await axios.post(`${SERVER_URL}/users`, {
                     id : id,
                     email : mail,
                     password : password
                 });
-    
+                
                 if(response.status ===  201){
                     navigate("/login");
                 }

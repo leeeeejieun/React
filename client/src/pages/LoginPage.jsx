@@ -44,7 +44,7 @@ const LoginPage = () =>{
                 id: id,
                 password: password,
             });
-            
+        
             if(response.status === 200){
                 // 응답 헤더에서 AccessToken을 가져오기
                 localStorage.setItem("accessToken", response.data.accessToken);

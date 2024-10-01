@@ -9,7 +9,7 @@ export const UploadImage = ({image, handleImageUpload}) => {
     const handleUpload = (e) =>{
         // 선택한 파일을 가져옴
         const file = e.target.files[0];
-
+       
         // 미리보기 기능 구현
         if(file){
             // FileReader 객체 생성
@@ -17,7 +17,7 @@ export const UploadImage = ({image, handleImageUpload}) => {
             // 파일 읽기가 완료되면 결과를 image에 저장
             reader.onloadend = () =>{
                 setImg(reader.result);
-                handleImageUpload(reader.result);
+                handleImageUpload(reader.result, file);
             };
 
             // 파일을 데이터 URL로 읽기 시작

@@ -10,10 +10,11 @@ export const TopicForm = ({initialData = {}, onSubmit, action}) => {
         img: initialData.img || null,
     });
 
-    const handleImageUpload = (imgUrl) => {
+    const handleImageUpload = (imgUrl, imgFile) => {
         setTopic({
             ...topic,
             img : imgUrl,
+            imgFile : imgFile
         });
     };
 
