@@ -11,7 +11,8 @@ module.exports = {
 
     // s3에 사용자 이미지 저장
     imageUploader: async (image, userId) => {
-        const path = `post_images/${userId}/${image.originalname}`;
+        const fileName =  Buffer.from(image.originalname, 'latin1').toString('utf8'); // 한글 깨짐 방지
+        const path = `post_images/${userId}/${fileName}`;
         
         const command =  new PutObjectCommand({
             Bucket: bucket,
