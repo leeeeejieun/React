@@ -1,5 +1,6 @@
 "use strict"
-const {PutObjectCommand} = require('@aws-sdk/client-s3');
+const {PutObjectCommand, GetObjectCommand} = require('@aws-sdk/client-s3');
+const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
 const multer = require('multer');
 
 const aws_s3 = require('../config/aws_s3');
@@ -27,4 +28,20 @@ module.exports = {
             console.log(err);
         }
     },
+    getImage: async () => {
+        try {
+            const command = new GetObjectCommand({
+                Bucket: bucket,
+                Key: `post_images/admin/그림일기 UI 레퍼런스.png`,
+            });
+            
+            // Signed URL 생성
+            const url = await getSignedUrl(aws_s3, command, { expiresIn: 3600 }); // GetObjectCommand 사용
+            console.log(url); // 생성된 Signed URL
+            return url; // URL 반환
+
+        } catch (err) {
+            console.error(err);
+        }
+    }
 };
