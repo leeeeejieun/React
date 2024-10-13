@@ -11,9 +11,11 @@ module.exports = {
     upload : multer({ storage: multer.memoryStorage() }),  // 메모리에 이미지 파일 임시 저장
 
     // s3에 사용자 이미지 저장
-    imageUploader: async (image, userId) => {
-        const fileName =  Buffer.from(image.originalname, 'latin1').toString('utf8'); // 한글 깨짐 방지
-        const path = `post_images/${userId}/${fileName}`;
+    imageUploader: async (baseFolder, image, userId) => {
+        const date = new Date().toISOString().split('T')[0]; // 오늘 날짜를 'YYYY-MM-DD' 형식으로 가져오기
+        const fileName = Buffer.from(image.originalname, 'utf8').toString('utf8'); // 한글 깨짐 방지
+        const path = `${baseFolder}/${userId}/${fileName}_${date}`; // 날짜와 파일명을 포함한 경로
+        console.log(path)
         
         const command =  new PutObjectCommand({
             Bucket: bucket,
@@ -21,23 +23,18 @@ module.exports = {
             Body: image.buffer
        });
     
-        try{
-            await aws_s3.send(command);
-            return path;
-        }catch(err){
-            console.log(err);
-        }
+        await aws_s3.send(command);
+        return path;
     },
     getImage: async () => {
         try {
             const command = new GetObjectCommand({
                 Bucket: bucket,
-                Key: `post_images/admin/그림일기 UI 레퍼런스.png`,
+                Key: "diary_images/test/다운로드.png_2024-10-13",
             });
             
             // Signed URL 생성
             const url = await getSignedUrl(aws_s3, command, { expiresIn: 3600 }); // GetObjectCommand 사용
-            console.log(url); // 생성된 Signed URL
             return url; // URL 반환
 
         } catch (err) {
@@ -45,3 +42,5 @@ module.exports = {
         }
     }
 };
+
+
